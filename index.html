@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="source.js"></script> 
+        <link rel="stylesheet" href="style.css">
+        <title>Emoji Text Generator</title>
+    </head>
+    <body>
+        <div id="generator">
+            <h1>Emoji Text Generator</h1>
+            <h3>For important messages.</h3>
+            <div id="explanation">
+                Enter the right codes for the right emoticons down below, enter the text to generate, 
+                then press the button! Have fun, and remember: with great power comes great responsibility.
+            </div>
+            <form onsubmit="processForm(this); return false;">
+                <label for="empty">Empty ( ):</label>
+                <input type="text" id="empty" name="empty" value=":nothing:"><br>
+
+                <label for="hor-left">Horizontal left (╾):</label>
+                <input type="text" id="hor-left" name="hor-left" value=":hor_left:"><br>
+                
+                <label for="hor-middle">Horizontal middle (─):</label>
+                <input type="text" id="hor-middle" name="hor-middle" value=":hor_middle:"><br>
+                
+                <label for="hor-right">Horizontal right (╼):</label>
+                <input type="text" id="hor-right" name="hor-right" value=":hor_right:"><br>
+                
+                <label for="ver-top">Vertical top (╿):</label>
+                <input type="text" id="ver-top" name="ver-top" value=":ver_top:"><br>
+                
+                <label for="ver-middle">Vertical middle (│):</label>
+                <input type="text" id="ver-middle" name="ver-middle" value=":ver_middle:"><br>
+                
+                <label for="ver-bottom">Vertical bottom (╽):</label>
+                <input type="text" id="ver-bottom" name="ver-bottom" value=":ver_bottom:"><br>
+                
+                <label for="link-left">Link left (┤):</label>
+                <input type="text" id="link-left" name="link-left" value=":link_left:"><br>
+                
+                <label for="link-top">Link top (┴):</label>
+                <input type="text" id="link-top" name="link-top" value=":link_top:"><br>
+                
+                <label for="link-right">Link right (├):</label>
+                <input type="text" id="link-right" name="link-right" value=":link_right:"><br>
+                
+                <label for="link-bottom">Link bottom (┬):</label>
+                <input type="text" id="link-bottom" name="link-bottom" value=":link_bottom:"><br>
+
+                <label for="corner-top-right">Corner top right (┌):</label>
+                <input type="text" id="corner-top-right" name="corner-top-right" value=":corner_top_right:"><br>
+
+                <label for="corner-top-left">Corner top left (┐):</label>
+                <input type="text" id="corner-top-left" name="corner-top-left" value=":corner_top_left:"><br>
+
+                <label for="corner-bottom-right">Corner bottom right (└):</label>
+                <input type="text" id="corner-bottom-right" name="corner-bottom-right" value=":corner_bottom_right:"><br>
+
+                <label for="corner-bottom-left">Corner bottom left (┘):</label>
+                <input type="text" id="corner-bottom-left" name="corner-bottom-left" value=":corner_bottom_left:"><br>
+                
+                <label for="link-cross">Cross (┼):</label>
+                <input type="text" id="link-cross" name="link-cross" value=":link_cross:"><br><br>
+                
+                <hr/>
+
+                <label for="input">Input text:</label>
+                <input type="text" id="input" name="input" value="Hello world"><br>
+
+                <input id="submit" type="submit" value="Generate!">
+            </form>
+            
+            <div id="output" ></div>
+        </div>
+
+        <div id="footer">
+            Roughly put together by <a href="https://lucvandenbrand.com">Luc van den Brand</a>, April 2022.
+        </div>
+    </body>
+    
+</html>
+

@@ -1,0 +1,71 @@
+html,
+body {
+    background-color: darkgrey;
+}
+
+h1 {
+    background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);   -webkit-background-clip: text;
+    color: transparent;
+}
+
+h1, 
+h2,
+h3 {
+    text-align: center;
+}
+
+#explanation {
+    padding: 5px;
+    margin-left: 1px;
+    margin-right: 1px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    background-color: white;
+}
+
+#generator {
+    display: block;
+    width: 600px;
+    margin: auto;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: lightgray;
+}
+
+form label {
+    display: inline-block;
+    width: 48%;
+}
+
+form input {
+    display: inline-block;
+    width: 49%;
+}
+
+form #submit {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: white;
+}
+
+#output {
+    display: block;
+    width: 100%;
+    height: 100px;
+    border: 1px;
+    border-style: solid;
+    border-color: black;
+    background-color: white;
+    overflow-x: scroll;
+    overflow-y: scroll;
+}
+
+#footer {
+    text-align: center;
+    position:absolute;
+    bottom:0;
+    width:100%;
+}
