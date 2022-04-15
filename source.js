@@ -230,7 +230,7 @@ const processForm = form => {
     for (let index = 0; index < input_text.length; index++) {
         const block = getCharacterTemplate(input_text[index]);
 
-        // TODO : replace characters in template.
+        // Replace characters in template.
         if (block.length > 0) {
             letter_blocks.push(converter.convertTemplate(block));
         }
@@ -241,19 +241,25 @@ const processForm = form => {
     let row = 0;
     let rows_left = true;
     while(rows_left) {
+    	let output_row = '';
         for (let block_num = 0; block_num < letter_blocks.length; block_num++) {
             let block = letter_blocks[block_num];
             if (row >= block.length) {
                 rows_left = false;
                 break;
             }
-            output_text += block[row];
+            output_row += block[row];
         }
-        output_text += '\n';
+        
+        // If nothing was added, we don't really have a row.
+        if (output_row.length > 0) {
+            output_text += output_row + '\n';
+        }
+        
         row++;
     }
 
     // Set output text in field.
-    document.getElementById('output').innerHTML = output_text;
+    document.getElementById('output').value = output_text;
 };
 
