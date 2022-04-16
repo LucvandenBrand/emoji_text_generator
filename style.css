@@ -37,9 +37,13 @@ form label {
     width: 48%;
 }
 
-form input {
+form input, select {
     display: inline-block;
     width: 49%;
+}
+
+form select{
+    width: 50.5%;
 }
 
 form #submit {

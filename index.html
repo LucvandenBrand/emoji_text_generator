@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <!-- Load fonts -->
+        <script src="fonts/classic_clarice.js"></script> 
+        <script src="fonts/shouting_sam.js"></script> 
+        <!-- Load main source file -->
         <script src="source.js"></script> 
+        <!-- Markup -->
         <link rel="stylesheet" href="style.css">
         <title>Emoji Text Generator</title>
     </head>
@@ -13,7 +18,7 @@
                 Enter the right codes for the right emoticons down below, enter the text to generate, 
                 then press the button! Have fun, and remember: with great power comes great responsibility.
             </div>
-            <form onsubmit="processForm(this); return false;">
+            <form onsubmit="return processForm(this);">
                 <label for="empty">Empty ( ):</label>
                 <input type="text" id="empty" name="empty" value=":nothing:"><br>
 
@@ -63,6 +68,12 @@
                 <input type="text" id="link-cross" name="link-cross" value=":link_cross:"><br><br>
                 
                 <hr/>
+                
+                <label for="font">Font:</label>
+                <select name="font" id="font">
+                    <option value="font_shouting_sam">Shouting Sam</option>
+                    <option value="font_classic_clarice">Classic Clarice</option>
+                </select>
 
                 <label for="input">Input text:</label>
                 <input type="text" id="input" name="input" value="Hello world"><br>

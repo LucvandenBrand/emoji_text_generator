@@ -1,166 +1,25 @@
-// Ugly switch case defining all templates, because this is a hobby project and I'm trying not to overthink this.
-const getCharacterTemplate = character => {
-    switch (character.toUpperCase()) {
-        case 'A':
-            return [
-                '┌─┐',
-                '├─┤',
-                '╽ ╽',
-            ];
-        case 'B':
-            return [
-                '┌─┐',
-                '├─┤',
-                '└─┘',
-            ];
-        case 'C':
-            return [
-                '┌─╼',
-                '│  ',
-                '└─╼',
-            ];
-        case 'D':
-            return [
-                '┌─┐',
-                '│ │',
-                '└─┘',
-            ];
-        case 'E':
-            return [
-                '┌─╼',
-                '├─╼',
-                '└─╼',
-            ];
-        case 'F':
-            return [
-                '┌─╼',
-                '├─╼',
-                '╽  ',
-            ];
-        case 'G':
-            return [
-                '┌─┐',
-                '│╾┐',
-                '└─┘',
-            ];
-        case 'H':
-            return [
-                '╿ ╿',
-                '├─┤',
-                '╽ ╽',
-            ];
-        case 'I':
-            return [
-                ' ╿ ',
-                ' │ ',
-                ' ╽ ',
-            ];
-        case 'J':
-            return [
-                '  ╿',
-                '  │',
-                '╾─┘',
-            ];
-        case 'K': // Ugly, but we need diagonals otherwise.
-            return [
-                '┌─╼',
-                '├─┐',
-                '╽ ╽',
-            ];
-        case 'L':
-            return [
-                '╿  ',
-                '│  ',
-                '└─╼',
-            ];
-        case 'M':
-            return [
-                '┌┬┐',
-                '│││',
-                '╽╽╽',
-            ];
-        case 'N':
-            return [
-                '┌─┐',
-                '│ │',
-                '╽ ╽'
-            ];
-        case 'O':
-            return [
-                '┌─┐',
-                '│ │',
-                '└─┘',
-            ];
-        case 'P':
-            return [
-                '┌─┐',
-                '├─┘',
-                '╽  ',
-            ];
-        case 'Q':
-            return [
-                '┌─┐',
-                '│ │',
-                '└─┘',
-            ];
-        case 'R':
-            return [
-                '┌─┐',
-                '├─┤',
-                '╽ ╽',
-            ];
-        case 'S':
-            return [
-                '┌─╼',
-                '└─┐',
-                '╾─┘',
-            ];
-        case 'T':
-            return [
-                '╾┬╼',
-                ' │ ',
-                ' ╽ ',
-            ];
-        case 'U':
-            return [
-                '╿ ╿',
-                '│ │',
-                '└─┘',
-            ];
-        case 'V':
-            return [
-                '╿ ╿',
-                '│ │',
-                '└─┘'
-            ];
-        case 'W':
-            return [
-                '╿╿╿',
-                '│││',
-                '└┴┘'
-            ];
-        case 'X':
-            return [
-                ' ╿ ',
-                '╾┼╼',
-                ' ╽ ',
-            ];
-        case 'Y':
-            return [
-                '╿ ╿',
-                '└┬┘',
-                ' ╽ ',
-            ];
-        case 'Z':
-            return [
-                '╾─┐',
-                '┌─┘',
-                '└─╼',
-            ];   
-        default:
+// Loads a font from the given name, then provides a template getter.
+const buildFont = font_name => {
+    const font_json = window[font_name];
+    if (!font_json) {
+        return null;
+    }
+
+    const getCharacterTemplate = character => {
+        let template = font_json['templates'][character];
+        if (!template) {
+            template = font_json['templates'][character.toUpperCase()];
+        }
+        if (!template) {
             console.log("Character '" + character + "' not supported, skipped.");
             return [];
+        }
+        return template;
     }
+
+    return {
+        getCharacterTemplate
+    };
 }
 
 // Pass the form data and this gives you a method that will convert templates using the provided emoji codes.
@@ -222,13 +81,20 @@ const buildTemplateConverter = form_data => {
 // Main method processing the form and doing the work.
 const processForm = form => {
     const form_data = new FormData(form);
+    const font_name = form_data.get('font') ?? 'classic_clarice:';
+    const font = buildFont(font_name);
+    if (!font) {
+        console.log("Font '" + font_name + "' could not be loaded!");
+        return false;
+    }
+
     const input_text = form_data.get('input');
     const converter = buildTemplateConverter(form_data);
     
     // Get all required letter blocks.
     let letter_blocks = [];
     for (let index = 0; index < input_text.length; index++) {
-        const block = getCharacterTemplate(input_text[index]);
+        const block = font.getCharacterTemplate(input_text[index]);
 
         // Replace characters in template.
         if (block.length > 0) {
@@ -261,5 +127,6 @@ const processForm = form => {
 
     // Set output text in field.
     document.getElementById('output').value = output_text;
+    return false;
 };
 
