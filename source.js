@@ -106,7 +106,7 @@ const processForm = form => {
     let output_text = '';
     let row = 0;
     let rows_left = true;
-    while(rows_left) {
+    while(rows_left && letter_blocks.length > 0) {
     	let output_row = '';
         for (let block_num = 0; block_num < letter_blocks.length; block_num++) {
             let block = letter_blocks[block_num];
