@@ -39,7 +39,7 @@ const buildTemplateConverter = form_data => {
     const corner_top_left = form_data.get('corner-top-left') ?? ':corner_top_left:';
     const corner_bottom_right = form_data.get('corner-bottom-right') ?? ':cornet_bottom_right:';
     const corner_bottom_left = form_data.get('corner-bottom-left') ?? ':corner_bottom_left:';
-    const cross = form_data.get('cross') ?? ':cross:';
+    const cross = form_data.get('link-cross') ?? ':cross:';
 
     // Define the mapping for characters.
     const replacement_map = {
